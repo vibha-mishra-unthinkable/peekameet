@@ -1,0 +1,101 @@
+$font-family: "DM Sans", sans-serif;
+$font-size: 1.5rem;
+$font-color: #152d4e;
+
+.signinFormContainer {
+  background-color: white;
+  display: flex;
+  padding: 2rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+}
+.leftSignInContainer {
+  width: 50%;
+  margin-right: 12rem;
+}
+img {
+  width: 559px;
+  height: 468px;
+}
+
+.rightSignInHeading {
+  color: $font-color;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+span {
+  font-size: 1.5rem;
+  font-family: $font-family;
+  font-weight: bold;
+}
+.btnGroup {
+  flex-wrap: wrap;
+  display: flex;
+  margin-bottom: 1rem;
+}
+.buildText {
+  font-size: 1.125rem;
+  font-family: $font-family;
+  color: $font-color;
+  margin-bottom: 1rem;
+}
+.inputLabel {
+  color: #9ea0a3;
+  display: block;
+}
+.signinBtn {
+  margin: 0 0 20px;
+  padding: 8px 190px 7px;
+  border-radius: 4px;
+  color: white;
+  width: 434px;
+  background-color: #09a04f;
+  border: none;
+  font-family: DM Sans;
+  font-size: 16px;
+  font-weight: bold;
+  width: 96%;
+}
+.checkboxInput {
+  width: 16px;
+  height: 16px;
+  margin: 1px 11px 1px 0;
+}
+.remember {
+  display: flex;
+  align-items: center;
+}
+.forgotPassword {
+  margin: 0 0 0 200px;
+  opacity: 0.7;
+  font-family: DM Sans;
+  font-size: 14px;
+  color: #000;
+  text-decoration: underline;
+}
+.rememberForgot {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.dontHaveAccount {
+  font-size: 14px;
+  text-align: center;
+}
+.signUp {
+  font-size: 14px;
+  text-decoration: underline;
+}
+.inputField {
+  //   width: 431px;
+  height: 36px;
+  margin: 6px 0 0;
+  padding: 10px 296px 6px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.11);
+  border: solid 1px #1cb54f;
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+.error {
+  color: red;
+}
