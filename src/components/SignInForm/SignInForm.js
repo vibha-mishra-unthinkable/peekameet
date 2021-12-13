@@ -1,11 +1,12 @@
-import React, { useContext, useRef, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import "../../assets/styles/SignInForm.scss";
 import group18 from "../../assets/images/group-18.jpg";
 import ButtonGrp from "../ButtonGrp/ButtonGrp";
-import InputField from "../InputField/InputField";
-import MyContext from "../../redux/store/ContextStore";
-import { useDispatch } from "react-redux";
-import { loginCall } from "../../redux/actions";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import AuthContext from "../../context/AuthContext";
+
 const regex = RegExp(/^((?=.*?[0-9])).{8,}$/);
 const buttonInfo = [
   {
@@ -41,97 +42,219 @@ const buttonInfo = [
 ];
 
 const SignInForm = () => {
-  const email = useRef();
-  const password = useRef();
-  const user = useContext(MyContext);
-  // const state = useContext(MyContext);
-  const { userData, setUserData, error, setError } = user;
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [errorStatus, setErrorStatus] = useState(false);
+  // const user = useContext(MyContext);
+  // const { userData, setUserData, error, setError } = user;
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   console.log(userData);
+  // }, [userData]);
+  // useEffect(() => {
+  //   localStorage.clear();
+  // }, []);
 
-  // const dispatch = useDispatch();
-  const validateEmail = (email) => {
-    if (
-      email &&
-      email.includes("@") &&
-      email.includes(".") &&
-      email.slice(0, email.indexOf("@")).length > 3
-    )
-      return true;
-    else return false;
-  };
-  const validatePassword = (password) => {
-    if (regex.test(password)) return true;
-    else return false;
-  };
-  useEffect(() => {
-    setUserData({ email: "", password: "" });
-    setError({ emailErr: "", passwordErr: "" });
-    localStorage.clear();
-  }, []);
+  // const validateEmail = (email) => {
+  //   console.log("validating email");
+  //   if (
+  //     email &&
+  //     email.includes("@") &&
+  //     email.includes(".") &&
+  //     email.slice(0, email.indexOf("@")).length > 3
+  //   )
+  //     return true;
+  //   else return false;
+  // };
+  // const validatePassword = (password) => {
+  //   console.log("validating password");
+  //   if (regex.test(password.toString())) return true;
+  //   else return false;
+  // };
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    const enteredEmail = email.current.value;
-    const enteredPassword = password.current.value;
-    console.log("email", enteredEmail);
-    console.log("password", enteredPassword);
-    //checking error for email
-    if (!validateEmail(enteredEmail)) {
-      setError((prevState) => {
-        return {
-          ...prevState,
-          emailErr: "Please enter valid email",
-        };
+  // //clearing all errors and localstorage
+  // // const resetHandler = (e) => {
+  // //   e.preventDefault();
+  // //   setError({ ...error, emailErr: "", passwordErr: "" });
+  // //   localStorage.clear();
+  // // };
+  // const handleEmailChange = (e) => {
+  //   setEmail(e.target.value);
+  // };
+  // const handlePasswordChange = (e) => {
+  //   setPassword(e.target.value);
+  // };
+  // // const updateUserData = async () => {
+  // //   await setUserData((prevState) => ({
+  // //     ...prevState,
+  // //     email: email,
+  // //     password: password,
+  // //   }));
+  // // };
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   console.log("email", email);
+  //   console.log("password", password);
+  //   console.log("Inside Submit handler");
+
+  //   //checking error for email
+  //   if (!validateEmail(email)) {
+  //     console.log("invalid email");
+  //     setError((prevState) => {
+  //       return {
+  //         ...prevState,
+  //         emailErr: "Please enter valid email",
+  //       };
+  //     });
+  //   }
+  //   //checking error for password
+  //   if (!validatePassword(password)) {
+  //     console.log("invalid password");
+  //     setError((prevState) => ({
+  //       ...prevState,
+  //       passwordErr: "Please enter valid password",
+  //     }));
+  //   }
+  //   console.log("error", error);
+  //   console.log(error.emailErr.length, error.passwordErr.length);
+  //   //   //if no error exists,then update user data and set data to localstorage
+  //   // setErrorStatus(error.emailErr.length === 0 && error.passwordErr.length === 0)
+  //   if (error.emailErr.length === 0 && error.passwordErr.length === 0) {
+  //     console.log("hello");
+  //     setUserData({
+  //       userEmail: email,
+  //       userPassword: password,
+  //     });
+  //     localStorage.setItem(
+  //       "user",
+  //       JSON.stringify({
+  //         userEmail: email,
+  //         userPassword: password,
+  //       })
+  //     );
+  //     navigate("/home");
+  //   }
+  // };
+  const [userEmail, setUserName] = useState("");
+  const [userPassword, setPassword] = useState("");
+  const [emailerr, setEmailError] = useState({});
+  const [pwderr, setPasswordError] = useState({});
+  const authCtx = useContext(AuthContext);
+
+  const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (emailerr.msg === "" && pwderr.msg === "") {
+  //     const resData = axios.get(
+  //       "http://localhost:3000/api/mocks/userLogin.json"
+  //     );
+  //     authCtx.login(resData.data.data[0].token);
+  //     authCtx.getData(resData.data.data[0].customer);
+  //     navigate("/home");
+  //   }
+  // }, [emailerr, pwderr, navigate, authCtx]);
+
+  const loginHandler = async (event) => {
+    console.log("click");
+    console.log(userEmail, userPassword);
+    event.preventDefault();
+
+    if (userEmail.trim().length === 0) {
+      setEmailError({
+        title: "Invalid Input",
+        msg: "Please enter valid email(non-empty value.)",
+      });
+      // checkDisplayError = true;
+      return;
+    }
+    if (!userEmail.includes("@") && !userEmail.includes(".")) {
+      setEmailError({
+        title: "Invalid Input",
+        msg: "Please enter valid email('@' is missing or '.' is missing)",
       });
     }
-    //checking error for password
-    if (!validatePassword(enteredPassword)) {
-      setError((prevState) => {
-        return {
-          ...prevState,
-          passwordErr: "Please enter valid password",
-        };
+
+    if (userPassword.trim().length === 0) {
+      setPasswordError({
+        title: "Invalid Input",
+        msg: "password (non-empty value.)",
       });
+      return;
     }
-    console.log("error", error);
-    //if no error exists,then update user data and set data to localstorage
-    if (!error.emailErr.length && !error.passwordErr.length) {
-      console.log("error email", error.emailErr);
-      console.log("hello");
-      setUserData((prevState) => {
-        return {
-          ...prevState,
-          email: email.current.value,
-          password: password.current.value,
-        };
+
+    if (userPassword.trim().length < 8) {
+      setPasswordError({
+        title: "Invalid Password",
+        msg: "Password must be of 8 charcaters!",
       });
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ email: enteredEmail, password: enteredPassword })
+      return;
+    }
+
+    const check = userPassword.match(/\d+/g);
+    if (check === null) {
+      setPasswordError({
+        title: "Invalid Password",
+        msg: "Password must contain a number!",
+      });
+      return;
+    }
+
+    const res = await checkLogin();
+
+    console.log(res);
+    console.log(authCtx.data);
+
+    if (res === true) {
+      const resData = await axios.get(
+        "http://localhost:3000/api/mocks/userLogin.json"
       );
-      console.log(userData);
+      console.log(true);
+      authCtx.login(resData.data.data[0].token);
+      authCtx.getData(resData.data.data[0].customer);
+      console.log(authCtx.isLoggedIn);
+      console.log(authCtx.token);
+      console.log(authCtx.userData);
+      navigate("/home");
     }
 
-    // const email = email.current.value;
-    // const password = password.current.value;
+    /* 
+          TODO
+          - add validation: show invalid input error
+          - add a mock file
+          - call checkLogin method
+            - call login api
+          - success: store data in contextData api
+          - fail: show error
+          */
+  };
 
-    // dispatch(
-    //   loginCall({
-    //     email: email.current.value,
-    //     password: password.current.value,
-    //   })
+  const checkLogin = async () => {
+    // const res = await axios.get(
+    //   "http://localhost:3000/api/mocks/userLogin.json"
     // );
-    // loginCall({ email: email.current.value, password: password.current.value });
+    const email = "bhagyashree.srivastava@daffodilsw.com";
+    console.log(email + "");
+    try {
+      if (email === userEmail) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (err) {
+      alert("Invalid api call");
+    }
   };
   return (
     <>
       <div className="container signinFormContainer">
         <div className="leftSignInContainer">
-          <img src={group18} alt="abc" />
+          <img src={group18} alt="abc" className="signinImg" />
         </div>
         <div className="rightSignInContainer">
           <div className="rightSignInHeading">
-            <span>PEEKaMEET</span> lets you network more effectively to achieve
-            your business and career goals
+            <span className="peekameetHead">PEEKaMEET</span> lets you network
+            more effectively to achieve your business and career goals
           </div>
           <div className="btnGroup">
             {buttonInfo.map((btn) => (
@@ -143,27 +266,25 @@ const SignInForm = () => {
           </div>
 
           <div className="formDiv">
-            <form onSubmit={submitHandler} noValidate>
+            <form onSubmit={loginHandler} noValidate>
               <label className="inputLabel">Email</label>
               <input
                 type="email"
                 className="inputField"
-                ref={email}
-                noValidate
+                onChange={(e) => setUserName(e.target.value)}
               />
-              {error.emailErr.length > 0 && (
-                <span className="error">{error.emailErr}</span>
-              )}
+
+              <span className="error">{emailerr && emailerr.msg}</span>
+
               <label className="inputLabel">Password</label>
               <input
                 type="password"
                 className="inputField"
-                ref={password}
-                noValidate
+                onChange={(e) => setPassword(e.target.value)}
               />
-              {error.passwordErr.length > 0 && (
-                <span className="error">{error.passwordErr}</span>
-              )}
+
+              <span className="error">{pwderr && pwderr.msg}</span>
+
               <button type="submit" className="signinBtn">
                 Sign In
               </button>

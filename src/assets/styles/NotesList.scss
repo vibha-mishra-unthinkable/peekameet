@@ -1,0 +1,23 @@
+.note {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: wheat;
+  margin-bottom: 1rem;
+}
+.noteText {
+  font-size: 1.2rem;
+  // max-lines: ;
+  // max-width: ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: wrap;
+}
+.dateTime {
+  font-size: 0.8rem;
+  color: gray;
+  padding: 0.4rem 0;
+  justify-content: space-between;
+  display: flex;
+}

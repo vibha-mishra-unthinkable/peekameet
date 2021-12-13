@@ -1,0 +1,43 @@
+.detailsComp {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding-top: 1rem;
+}
+
+.detailsQuote {
+  display: flex;
+}
+.quoteImg {
+  width: 14px;
+  height: 11px;
+}
+.quoteText {
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: "DM Sans";
+}
+.userDetailsListDiv {
+  width: 100%;
+}
+.userDetailsLists {
+  color: #9ea0a3;
+  font-size: 0.825rem;
+  margin-bottom: 1rem;
+}
+.userDetailsList {
+  margin: 0;
+  padding: 0;
+}
+.userDetailsListsUl {
+  list-style: none;
+
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  margin-top: 0.5rem;
+}
