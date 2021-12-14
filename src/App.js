@@ -11,6 +11,7 @@ import { useContext } from "react";
 import AddNotes from "./components/AddNotes/AddNotes";
 import { Provider } from "react-redux";
 import store from "./redux/store/store";
+import UpdateForm from "./components/UpdateForm/UpdateForm";
 function App() {
   const authCtx = useContext(AuthContext);
   return (
@@ -23,6 +24,7 @@ function App() {
             {/* <Route path="/home/details" element={<Details />} /> */}
             <Route path="/home/notes" element={<Notes />} />
             <Route path="/home/notes/addnotes" element={<AddNotes />} />
+            <Route path="/home/notes/updateNotes" element={<UpdateForm />} />
           </Routes>
         </div>
         <Footer />

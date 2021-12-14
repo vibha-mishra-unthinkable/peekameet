@@ -4,17 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import "../../assets/styles/AddNotesForm.scss";
 import { editNote, editNoteText, saveNote } from "../../redux/actions";
 import { Link } from "react-router-dom";
-const AddNotesForm = () => {
-  // const [noteInputs, setNoteInputs] = useState({
-  //   date: null,
-  //   time: null,
-  //   note: "",
-  // });
-  const editText = useSelector((state) => state.noteReducer.editNoteText);
-  console.log(editText);
-  const [dateInput, setDateInput] = useState("");
-  const [timeInput, setTimeInput] = useState("");
-  const [noteTextInput, setNoteTextInput] = useState("");
+const UpdateForm = () => {
+  const editNoteText = useSelector((state) => state.noteReducer.editNoteText);
+  console.log(editNoteText);
+  const { note, noteArrId } = editNoteText;
+  const [dateInput, setDateInput] = useState(note.noteInputs.date);
+  const [timeInput, setTimeInput] = useState(note.noteInputs.time);
+  const [noteTextInput, setNoteTextInput] = useState(note.noteInputs.noteText);
   const dispatch = useDispatch();
 
   return (
@@ -61,15 +57,21 @@ const AddNotesForm = () => {
               className="saveBtn"
               onClick={() =>
                 dispatch(
-                  saveNote({
-                    date: dateInput,
-                    time: timeInput,
-                    noteText: noteTextInput,
-                  })
+                  editNote(
+                    {
+                      id: note.id,
+                      noteInputs: {
+                        date: dateInput,
+                        time: timeInput,
+                        noteText: noteTextInput,
+                      },
+                    },
+                    noteArrId
+                  )
                 )
               }
             >
-              Save
+              Update
             </button>
           </Link>
         </div>
@@ -78,4 +80,4 @@ const AddNotesForm = () => {
   );
 };
 
-export default AddNotesForm;
+export default UpdateForm;

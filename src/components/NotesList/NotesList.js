@@ -9,17 +9,11 @@ export const NotesList = () => {
     console.log(state);
     return state.noteReducer.notes;
   });
-  const showNote = (id, noteArrId) => {
-    if (id) setDisplayNote(!displayNote);
-  };
-  const notesTextToShow = (noteText) => {
-    if (noteText.length > 300) return noteText.substring(0, 300) + "...";
-    return noteText;
-  };
+  console.log(notesList);
 
   return (
     <div className="notesList">
-      {notesList.map((note) => {
+      {notesList.map((note, noteArrId) => {
         return (
           <div className="note" key={note.id}>
             <div className="noteText">
@@ -29,7 +23,7 @@ export const NotesList = () => {
                 <span>{note.noteInputs.time}</span>
               </div>
             </div>
-            <MenuItems note={note} />
+            <MenuItems note={note} noteArrId={noteArrId} />
           </div>
         );
       })}

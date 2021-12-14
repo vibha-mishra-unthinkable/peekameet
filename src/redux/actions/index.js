@@ -17,10 +17,10 @@ export const viewAllNote = () => {
     type: "VIEWALL_NOTE",
   };
 };
-export const editNote = (note) => {
+export const editNote = (note, noteArrId) => {
   return {
     type: "EDIT_NOTE",
-    payload: note,
+    payload: { note, noteArrId },
   };
 };
 export const deleteNote = (id) => {
@@ -29,8 +29,9 @@ export const deleteNote = (id) => {
     payload: id,
   };
 };
-// export const editNoteText = () => {
-//   return {
-//     type: "EDIT_NOTE_TEXT",
-//   };
-// };
+export const editNoteText = (note, noteArrId) => {
+  return {
+    type: "EDIT_NOTE_TEXT",
+    payload: { note, noteArrId },
+  };
+};

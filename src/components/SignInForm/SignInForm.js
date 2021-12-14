@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../../assets/styles/SignInForm.scss";
 import group18 from "../../assets/images/group-18.jpg";
 import ButtonGrp from "../ButtonGrp/ButtonGrp";
@@ -51,6 +51,9 @@ const SignInForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
   // useEffect(() => {
   //   if (emailerr.msg === "" && pwderr.msg === "") {
   //     const resData = axios.get(

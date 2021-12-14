@@ -21,8 +21,8 @@ const intitialState = {
     // },
   ],
   editNoteText: {
-    date: null,
-    time: null,
+    date: "",
+    time: "",
     noteText: "",
   },
 };
@@ -31,8 +31,14 @@ const noteReducer = (state = intitialState, action) => {
   switch (action.type) {
     case "SAVE_NOTE":
       const { id, noteInputs } = action.payload;
-      console.log(action.payload);
-
+      // const { editNoteId, editNoteInputs } = action.payload.editText;
+      // console.log(action.payload);
+      // if (noteId === editNoteId) {
+      //   state.notes.map((note) => {
+      //     if (note.id === editNoteId)
+      //       return (note.noteInputs.noteText = editNoteInputs);
+      //   });
+      // }
       return {
         ...state,
         notes: [
@@ -62,16 +68,21 @@ const noteReducer = (state = intitialState, action) => {
         notes: newNotes,
       };
     case "EDIT_NOTE":
-      return { ...state, editNoteText: action.payload };
-    // case "EDIT_NOTE_TEXT":
-    //   return {
-    //     ...state,
-    //     editNoteText: {
-    //       date: action.payload.date,
-    //       time: action.payload.time,
-    //       noteText: action.payload.noteText,
-    //     },
-    //   };
+      const { note, noteArrId } = action.payload;
+      console.log("note", note);
+      console.log("noteArrId", noteArrId);
+      console.log(state.notes);
+      const newEditNotes = state.notes;
+
+      newEditNotes[noteArrId] = note;
+      console.log(newEditNotes);
+      return { notes: newEditNotes };
+    case "EDIT_NOTE_TEXT":
+      console.log(action.payload);
+      return {
+        ...state,
+        editNoteText: action.payload,
+      };
     default:
       return state;
   }
