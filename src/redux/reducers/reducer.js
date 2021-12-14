@@ -1,3 +1,5 @@
+import ActionEject from "material-ui/svg-icons/action/eject";
+
 const intitialState = {
   notes: [
     // {
@@ -18,6 +20,11 @@ const intitialState = {
     //   },
     // },
   ],
+  editNoteText: {
+    date: null,
+    time: null,
+    noteText: "",
+  },
 };
 // const initialState = { notes: JSON.parse(localStorage.getItem("redux") || []) };
 const noteReducer = (state = intitialState, action) => {
@@ -37,11 +44,34 @@ const noteReducer = (state = intitialState, action) => {
         ],
       };
     case "DELETE_NOTE":
+      console.log("state.notes  ", state.notes);
+      console.log("action.payload  ", action.payload);
+      // console.log(
+      //   "after fiter:  ",
+      //   state.notes.filter((elem) => {
+      //     console.log(
+      //       elem.id.toString() !== action.payload.id.toString() && elem
+      //     );
+      //     return elem.id !== action.payload.id;
+      //   })
+      // );
       const newNotes = state.notes.filter((elem) => elem.id !== action.payload);
+      console.log(newNotes);
       return {
         ...state,
         notes: newNotes,
       };
+    case "EDIT_NOTE":
+      return { ...state, editNoteText: action.payload };
+    // case "EDIT_NOTE_TEXT":
+    //   return {
+    //     ...state,
+    //     editNoteText: {
+    //       date: action.payload.date,
+    //       time: action.payload.time,
+    //       noteText: action.payload.noteText,
+    //     },
+    //   };
     default:
       return state;
   }

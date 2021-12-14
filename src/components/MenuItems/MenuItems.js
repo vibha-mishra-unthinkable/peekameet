@@ -5,27 +5,35 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useDispatch } from "react-redux";
+import { deleteNote, editNote } from "../../redux/actions/index";
+import { useNavigate } from "react-router-dom";
 
-const options = [
-  { title: "View All", action: "viewAllNote" },
-  { title: "Edit", action: "editNote" },
-  { title: "Delete", action: "deleteNote" },
-];
+const options = ["View All", "Edit", "Delete"];
 
 const MenuItems = (props) => {
-  const id = props;
+  const note = props.note;
+  console.log(note);
+  console.log("id to be delted ", note.id);
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
+  const navigate = useNavigate();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const actionHandler = (option, note) => {
+    console.log("actionHandler", option, note.id);
+    if (option === "delete") dispatch(deleteNote(note.id));
+    // else if (option === "edit") {
+    //   navigate("/home/notes/addNotes");
+    //   dispatch(editNote(note));
+    // }
+    setAnchorEl(null);
+  };
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   return (
     <div>
       <IconButton
@@ -49,8 +57,10 @@ const MenuItems = (props) => {
         }}
       >
         {options.map((option) => (
-          <MenuItem key={option.title} onClick={handleClose}>
-            {option.title}
+          <MenuItem key={option} onClick={handleClose}>
+            <p onClick={() => actionHandler(option.toLowerCase(), note)}>
+              {option}
+            </p>
           </MenuItem>
         ))}
       </Menu>

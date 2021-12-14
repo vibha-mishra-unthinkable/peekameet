@@ -17,9 +17,10 @@ export const viewAllNote = () => {
     type: "VIEWALL_NOTE",
   };
 };
-export const editNote = () => {
+export const editNote = (note) => {
   return {
     type: "EDIT_NOTE",
+    payload: note,
   };
 };
 export const deleteNote = (id) => {
@@ -28,3 +29,8 @@ export const deleteNote = (id) => {
     payload: id,
   };
 };
+// export const editNoteText = () => {
+//   return {
+//     type: "EDIT_NOTE_TEXT",
+//   };
+// };

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import "../../assets/styles/AddNotesForm.scss";
-import { saveNote } from "../../redux/actions";
+import { editNoteText, saveNote } from "../../redux/actions";
 import { Link } from "react-router-dom";
 const AddNotesForm = () => {
   // const [noteInputs, setNoteInputs] = useState({
@@ -20,6 +21,7 @@ const AddNotesForm = () => {
   //     [name]: value,
   //   }));
   // };
+  const editText = useSelector((state) => state.editNoteText);
   return (
     <div className="addingNotes">
       <h1>Add Notes</h1>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "../../assets/styles/NotesList.scss";
 import MenuItems from "../MenuItems/MenuItems";
+import ReadMore from "../ReadMore/ReadMore";
 export const NotesList = () => {
   const [displayNote, setDisplayNote] = useState(true);
   let notesList = useSelector((state) => {
@@ -18,22 +19,17 @@ export const NotesList = () => {
 
   return (
     <div className="notesList">
-      {notesList.map((note, noteArrId) => {
+      {notesList.map((note) => {
         return (
-          <div className="note" key={note.id} noteArrId={noteArrId}>
-            <div
-              className="noteText"
-              onClick={() => showNote(note.id, noteArrId)}
-            >
-              {displayNote
-                ? notesTextToShow(note.noteInputs.noteText)
-                : note.noteInputs.noteText}
+          <div className="note" key={note.id}>
+            <div className="noteText">
+              <ReadMore>{note.noteInputs.noteText}</ReadMore>
               <div className="dateTime">
                 <span>{note.noteInputs.date}</span>
                 <span>{note.noteInputs.time}</span>
               </div>
             </div>
-            <MenuItems id={note.id} />
+            <MenuItems note={note} />
           </div>
         );
       })}

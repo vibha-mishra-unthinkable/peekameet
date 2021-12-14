@@ -7,6 +7,8 @@ import { getSuggestedQuery } from "@testing-library/dom";
 import AuthContext from "../../context/AuthContext";
 import ReadMore from "../ReadMore/ReadMore";
 import ButtonGrp from "../ButtonGrp/ButtonGrp";
+import { MdEmail, MdCall } from "react-icons/md";
+import { BsGlobe } from "react-icons/bs";
 const DetailsComp = () => {
   // const getUser = async () => {
   //   const res = await axios
@@ -48,7 +50,7 @@ const DetailsComp = () => {
         mi, non auctor nisi est nec nunc. More Lorem ipsum dolor sit amet,
         consectetur adipiscing elit. Fusce et eros sit amet sem viverra
         porttitor vel quis justo. Sed tempus, lorem suscipit vulputate mollis,
-        mi dolor bibendum mi, non auctor nisi est nec nunc. More v{/* </div> */}
+        mi dolor bibendum mi, non auctor nisi est nec nunc.{/* </div> */}
       </ReadMore>
       <div className="userDetailsListDiv">
         <div className="userDetailsLists">
@@ -184,6 +186,39 @@ const DetailsComp = () => {
             </li>
           </ul>
         </div>
+      </div>
+      <div className="userContactDetails">
+        <span className="userContacts">
+          <span className="userContactLogo">
+            <MdEmail />
+          </span>
+          <span className="userContactText">
+            bhagyashree.srivastava@daffodilsw.com
+          </span>
+        </span>
+        <span className="userContacts">
+          <span className="userContactLogo">
+            <BsGlobe />
+          </span>
+          <span className="userContactText">www.google.com</span>
+        </span>
+        <span className="userContacts">
+          <span className="userContactLogo">
+            <MdCall />
+          </span>
+          <span className="userContactText">555 444 1234</span>
+        </span>
+        <span className="userContacts">
+          <span className="userContactLogo">Business Address</span>
+          <div>
+            A Digital Agency
+            <br />
+            123 Sycamore Dr
+            <br />
+            Torrington CT, 06790
+            <br />
+          </div>
+        </span>
       </div>
     </div>
   );

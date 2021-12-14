@@ -8,10 +8,10 @@ const ReadMore = ({ children }) => {
     setIsReadMore(!isReadMore);
   };
   return (
-    <p className="text">
+    <p className="text" onClick={toggleReadMore}>
       {isReadMore ? text.slice(0, 300) : text}
-      <span onClick={toggleReadMore} className="read-or-hide">
-        {isReadMore ? "More" : " Less"}
+      <span className="read-or-hide">
+        {isReadMore ? (text.length > 300 ? "More" : "") : "Less"}
       </span>
     </p>
   );
