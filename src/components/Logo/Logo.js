@@ -14,7 +14,7 @@ const Logo = () => {
       <div className="signinBtnDiv">
         <Link to="/">
           <button className="signinBtnDiv">
-            {authCtx.isLoggedIn ? "Logout" : "Sign In"}
+            {authCtx.token ? "Logout" : "Sign In"}
           </button>
         </Link>
       </div>

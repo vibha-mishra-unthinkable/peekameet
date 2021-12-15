@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "../Layout/Layout";
 import DetailsComp from "../DetailsComp/DetailsComp";
 import { Profile } from "../Profile/Profile";
 

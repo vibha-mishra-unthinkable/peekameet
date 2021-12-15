@@ -1,15 +1,9 @@
 import React, { useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import "../../assets/styles/AddNotesForm.scss";
-import { editNote, editNoteText, saveNote } from "../../redux/actions";
+import { saveNote } from "../../redux/actions";
 import { Link } from "react-router-dom";
 const AddNotesForm = () => {
-  // const [noteInputs, setNoteInputs] = useState({
-  //   date: null,
-  //   time: null,
-  //   note: "",
-  // });
   const editText = useSelector((state) => state.noteReducer.editNoteText);
   console.log(editText);
   const [dateInput, setDateInput] = useState("");
@@ -52,9 +46,11 @@ const AddNotesForm = () => {
           />
         </div>
         <div className="addNotesButtons">
-          <button type="reset" className="cancelBtn">
-            Cancel
-          </button>
+          <Link to="/home/notes">
+            <button type="reset" className="cancelBtn">
+              Cancel
+            </button>
+          </Link>
           <Link to="/home/notes">
             <button
               type="submit"

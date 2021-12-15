@@ -7,7 +7,7 @@ import axios from "axios";
 
 import AuthContext from "../../context/AuthContext";
 
-const regex = RegExp(/^((?=.*?[0-9])).{8,}$/);
+//buttons on signin page
 const buttonInfo = [
   {
     title: "Freelancer",
@@ -47,44 +47,30 @@ const SignInForm = () => {
   const [emailerr, setEmailError] = useState({});
   const [pwderr, setPasswordError] = useState({});
   const authCtx = useContext(AuthContext);
-
-  const [isLogin, setIsLogin] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     localStorage.clear();
   }, []);
-  // useEffect(() => {
-  //   if (emailerr.msg === "" && pwderr.msg === "") {
-  //     const resData = axios.get(
-  //       "http://localhost:3000/api/mocks/userLogin.json"
-  //     );
-  //     authCtx.login(resData.data.data[0].token);
-  //     authCtx.getData(resData.data.data[0].customer);
-  //     navigate("/home");
-  //   }
-  // }, [emailerr, pwderr, navigate, authCtx]);
 
+  //on submitting signin form
   const loginHandler = async (event) => {
-    console.log("click");
-    console.log(userEmail, userPassword);
     event.preventDefault();
-
+    //checking if email field is not blank
     if (userEmail.trim().length === 0) {
       setEmailError({
         title: "Invalid Input",
         msg: "Please enter valid email(non-empty value.)",
       });
-      // checkDisplayError = true;
       return;
     }
+    //checking if email includes @ and .
     if (!userEmail.includes("@") && !userEmail.includes(".")) {
       setEmailError({
         title: "Invalid Input",
         msg: "Please enter valid email('@' is missing or '.' is missing)",
       });
     }
-
+    //checking if password input is not blank
     if (userPassword.trim().length === 0) {
       setPasswordError({
         title: "Invalid Input",
@@ -92,7 +78,7 @@ const SignInForm = () => {
       });
       return;
     }
-
+    //checking if password has minimum length of 8 characters
     if (userPassword.trim().length < 8) {
       setPasswordError({
         title: "Invalid Password",
@@ -100,7 +86,7 @@ const SignInForm = () => {
       });
       return;
     }
-
+    //checking if password conatins atleast one number
     const check = userPassword.match(/\d+/g);
     if (check === null) {
       setPasswordError({
@@ -111,40 +97,19 @@ const SignInForm = () => {
     }
 
     const res = await checkLogin();
-
-    console.log(res);
-    console.log(authCtx.data);
-
+    //if email is valid then set token and login details
     if (res === true) {
       const resData = await axios.get(
         "http://localhost:3000/api/mocks/userLogin.json"
       );
-      console.log(true);
       authCtx.login(resData.data.data[0].token);
       authCtx.getData(resData.data.data[0].customer);
-      console.log(authCtx.isLoggedIn);
-      console.log(authCtx.token);
-      console.log(authCtx.userData);
       navigate("/home");
     }
-
-    /* 
-          TODO
-          - add validation: show invalid input error
-          - add a mock file
-          - call checkLogin method
-            - call login api
-          - success: store data in contextData api
-          - fail: show error
-          */
   };
-
+  //checking if email is "bhagyashree.srivastava@daffodilsw.com"
   const checkLogin = async () => {
-    // const res = await axios.get(
-    //   "http://localhost:3000/api/mocks/userLogin.json"
-    // );
     const email = "bhagyashree.srivastava@daffodilsw.com";
-    console.log(email + "");
     try {
       if (email === userEmail) {
         return true;

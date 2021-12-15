@@ -5,7 +5,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useDispatch } from "react-redux";
-import { deleteNote, editNote, editNoteText } from "../../redux/actions/index";
+import { deleteNote, editNoteText } from "../../redux/actions/index";
 import { useNavigate } from "react-router-dom";
 
 const options = ["View All", "Edit", "Delete"];

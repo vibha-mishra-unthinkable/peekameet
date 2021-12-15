@@ -7,12 +7,7 @@ import { NavLink } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 
 const UserInfo = () => {
-  // const user = useContext(MyContext);
-  // //   let { userName } = user.userData.userEmail;
-  // console.log(user);
-  //   let username = userName.slice(0, userName.indexOf("@"));
   const authCtx = useContext(AuthContext);
-  console.log(authCtx.userData);
   const userData = authCtx.userData;
   return (
     <>

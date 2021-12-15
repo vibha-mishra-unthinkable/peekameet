@@ -1,7 +1,6 @@
 import React from "react";
 import "../../assets/styles/Profile.scss";
 import UserInfo from "../UserInfo/UserInfo";
-import DetailsNotes from "../DetailsNotes/DetailsNotes";
 import Logo from "../Logo/Logo";
 
 export const Profile = (props) => {
@@ -10,10 +9,8 @@ export const Profile = (props) => {
     <>
       <Logo />
       <div className="profileContainer">
-        {/* <Logo /> */}
         <UserInfo />
         {children}
-        {/* <DetailsNotes /> */}
       </div>
     </>
   );

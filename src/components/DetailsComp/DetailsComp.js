@@ -1,9 +1,7 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import openQuote from "../../assets/images/copy.png";
 import closeQuote from "../../assets/images/invalid-name.png";
 import "../../assets/styles/DetailsComp.scss";
-import axios from "axios";
-import { getSuggestedQuery } from "@testing-library/dom";
 import AuthContext from "../../context/AuthContext";
 import ReadMore from "../ReadMore/ReadMore";
 import ButtonGrp from "../ButtonGrp/ButtonGrp";

@@ -4,8 +4,6 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext";
-
-// store.subscribe(() => console.log(store.getState()));
 ReactDOM.render(
   <BrowserRouter>
     <AuthContextProvider>

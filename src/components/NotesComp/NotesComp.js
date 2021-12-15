@@ -3,9 +3,12 @@ import { BsFillPencilFill } from "react-icons/bs";
 import "../../assets/styles/NotesComp.scss";
 import { Link } from "react-router-dom";
 import { NotesList } from "../NotesList/NotesList";
-import { Provider } from "react-redux";
-import store from "../../redux/store/store";
+import { useSelector } from "react-redux";
 const NotesComp = () => {
+  let notesList = useSelector((state) => {
+    console.log(state);
+    return state.noteReducer.notes;
+  });
   return (
     <div className="notesComp">
       <Link to="/home/notes/addnotes" className="addNotesLink">
@@ -14,7 +17,7 @@ const NotesComp = () => {
           Add Notes
         </div>
       </Link>
-      <NotesList />
+      {notesList.length > 0 ? <NotesList /> : <h1>No Notes Available</h1>}
     </div>
   );
 };

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-// import AuthContext from "./AuthContext";
-import { useReducer } from "react";
 
 import { createContext } from "react";
-import store from "../redux/store/store";
+
 const AuthContext = createContext({
   token: "",
   isLoggedIn: false,
