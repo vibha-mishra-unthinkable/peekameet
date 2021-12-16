@@ -5,42 +5,50 @@ import "../../assets/styles/NotesList.scss";
 import MenuItems from "../MenuItems/MenuItems";
 import ReadMore from "../ReadMore/ReadMore";
 export const NotesList = () => {
-  let [pageCount, setCount] = useState(1);
-
   let notesList = useSelector((state) => {
     return state.noteReducer.notes;
   });
-  let currentList = notesList.slice(0, 10);
-  const [currentNotesList, setCurrentNotesList] = useState(currentList);
-
-  const fetchData = async () => {
-    if (notesList.length > pageCount * 10) {
-      let start = pageCount * 10;
-      let end = start + 10;
-      let newNotesList = notesList.slice(start, end);
-      newNotesList.map((note) => currentList.push(note));
-
-      const resp = await setCurrentNotesList(currentList);
-      console.log(resp);
-      return resp;
-    } else return false;
+  let length = notesList.length;
+  console.log(length);
+  const initial = {
+    items: notesList.slice(0, 2),
+    hasMore: true,
+    pageCount: 1,
   };
-  const dataHandler = () => {
-    let res = fetchData();
-    console.log(currentNotesList);
-    if (res && currentNotesList.length > pageCount * 10)
-      setCount(pageCount + 1);
+  const [state, setState] = useState(initial);
+
+  const fetchData = () => {
+    console.log("loading list: ", initial.items.length);
+    console.log("note length: ", notesList.length);
+    if (initial.items.length * state.pageCount === notesList.length) {
+      setState((prevState) => ({
+        ...prevState,
+        hasMore: false,
+      }));
+      console.log(state.hasMore);
+      return;
+    }
+    setTimeout(() => {
+      setState((prevState) => ({
+        ...prevState,
+        items: state.items.concat(
+          notesList.slice(state.pageCount * 2, state.pageCount * 2 + 2)
+        ),
+        pageCount: state.pageCount + 1,
+      }));
+    }, 500);
   };
 
   return (
-    <InfiniteScroll
-      dataLength={currentNotesList.length}
-      next={dataHandler}
-      hasMore={true}
-      loader={<h1>Loading...</h1>}
-    >
-      <div className="notesList">
-        {currentNotesList.map((note, noteArrId) => {
+    <div className="notesList">
+      <InfiniteScroll
+        dataLength={state.items.length}
+        next={fetchData}
+        hasMore={state.hasMore}
+        loader={<h3>Loading...</h3>}
+        endMessage={<h3>You have seen it all</h3>}
+      >
+        {state.items.map((note, noteArrId) => {
           return (
             <div className="note" key={note.id}>
               <div className="noteText">
@@ -54,7 +62,7 @@ export const NotesList = () => {
             </div>
           );
         })}
-      </div>
-    </InfiniteScroll>
+      </InfiniteScroll>
+    </div>
   );
 };
