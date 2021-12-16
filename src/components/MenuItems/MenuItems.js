@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -13,28 +12,23 @@ const options = ["View All", "Edit", "Delete"];
 const MenuItems = (props) => {
   const note = props.note;
   const noteArrId = props.noteArrId;
-  console.log(note);
-  console.log(noteArrId);
-  console.log("id to be delted ", note.id);
   const dispatch = useDispatch();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  //action to be performed on clicking in menu-  edit or delete
   const actionHandler = (option, note, noteArrId) => {
-    console.log("actionHandler", option, note.id);
     if (option === "delete") dispatch(deleteNote(note.id));
     else if (option === "edit") {
-      console.log("edit true");
-      navigate("/home/notes/updateNotes");
-      // dispatch(editNote(note, noteArrId));
+      navigate(`/home/notes/addNotes/${noteArrId}`);
       dispatch(editNoteText(note, noteArrId));
     }
     setAnchorEl(null);
   };
+  //for closing open menu component
   const handleClose = () => {
     setAnchorEl(null);
   };

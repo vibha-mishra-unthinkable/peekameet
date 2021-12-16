@@ -6,7 +6,6 @@ import { NotesList } from "../NotesList/NotesList";
 import { useSelector } from "react-redux";
 const NotesComp = () => {
   let notesList = useSelector((state) => {
-    console.log(state);
     return state.noteReducer.notes;
   });
   return (

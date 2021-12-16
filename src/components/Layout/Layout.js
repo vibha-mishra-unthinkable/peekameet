@@ -4,6 +4,7 @@ import UserProfile from "../UserProfile/UserProfile";
 
 const Layout = (props) => {
   let { children } = props;
+  //here children is details or notes component
   return (
     <div>
       <Logo />

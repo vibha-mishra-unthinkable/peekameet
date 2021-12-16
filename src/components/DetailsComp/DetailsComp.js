@@ -8,22 +8,9 @@ import ButtonGrp from "../ButtonGrp/ButtonGrp";
 import { MdEmail, MdCall } from "react-icons/md";
 import { BsGlobe } from "react-icons/bs";
 const DetailsComp = () => {
-  // const getUser = async () => {
-  //   const res = await axios
-  //     .get("http://localhost:3000/api/mocks/userLogin.json")
-  //     .then((resp) => resp.data)
-  //     .catch((err) => console.log(err));
-  //   console.log(res.data[0].customer);
-  // };
-  // useEffect(() => {
-  //   getUser();
-  //   //
-  // }, []);
-  // const {firstname,lastname}
+  //data from context api
   const authCtx = useContext(AuthContext);
-  console.log(authCtx.userData);
   const userData = authCtx.userData;
-  console.log(userData.tagline);
   return (
     <div className="detailsComp">
       <div className="detailsQuote">

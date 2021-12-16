@@ -7,7 +7,7 @@ import Notes from "./components/Notes/Notes";
 import AddNotes from "./components/AddNotes/AddNotes";
 import { Provider } from "react-redux";
 import store from "./redux/store/store";
-import UpdateForm from "./components/UpdateForm/UpdateForm";
+
 function App() {
   return (
     <>
@@ -18,7 +18,7 @@ function App() {
             <Route path="/home" element={<Details />} />
             <Route path="/home/notes" element={<Notes />} />
             <Route path="/home/notes/addnotes" element={<AddNotes />} />
-            <Route path="/home/notes/updateNotes" element={<UpdateForm />} />
+            <Route path="/home/notes/addnotes/:id" element={<AddNotes />} />
           </Routes>
         </div>
         <Footer />

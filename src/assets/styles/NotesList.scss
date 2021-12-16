@@ -8,14 +8,15 @@
   box-shadow: 10px 6px 19px -1px rgba(0, 0, 0, 0.62);
   -webkit-box-shadow: 10px 6px 19px -1px rgba(0, 0, 0, 0.62);
   -moz-box-shadow: 10px 6px 19px -1px rgba(0, 0, 0, 0.62);
-  border-left: 1rem solid #09a04f;
+  border-left: 0.5rem solid #09a04f;
+  border-right: 1px solid #09a04f;
+  border-top: 1px solid #09a04f;
+  border-bottom: 1px solid #09a04f;
   padding: 0.5rem;
   border-radius: 4px;
 }
 .noteText {
   font-size: 1.2rem;
-  // max-lines: ;
-  // max-width: ;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: wrap;
@@ -33,7 +34,6 @@
 .notesList {
   overflow: scroll;
   height: 93vh;
-  // scroll-behavior: smooth;
 }
 .notesList::-webkit-scrollbar {
   display: none;

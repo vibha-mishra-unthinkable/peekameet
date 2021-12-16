@@ -1,11 +1,12 @@
 import React from "react";
-import Logo from "../Logo/Logo";
+
 import AddNotesForm from "../AddNotesForm/AddNotesForm";
+import Header from "../Header/Header";
 
 const AddNotes = () => {
   return (
     <div>
-      <Logo />
+      <Header />
       <AddNotesForm />
     </div>
   );
