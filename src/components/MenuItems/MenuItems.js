@@ -24,7 +24,7 @@ const MenuItems = (props) => {
   const actionHandler = (option, note, noteArrId) => {
     if (option === "delete") dispatch(deleteNote(note.id));
     else if (option === "edit") {
-      navigate(`/home/notes/addNotes/${noteArrId}`);
+      navigate(`/home/notes/editnotes/${noteArrId}`);
       dispatch(editNoteText(note, noteArrId));
     }
     setAnchorEl(null);
