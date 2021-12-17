@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import userImg from "../../assets/images/userImg.jpg";
-import "../../assets/styles/UserInfo.scss";
+import "./UserInfo.scss";
 
 import { BsShareFill, BsFillPencilFill } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
-import AuthContext from "../../context/AuthContext";
 
 const UserInfo = () => {
-  const authCtx = useContext(AuthContext);
-  const userData = authCtx.userData;
+  const currentUser = JSON.parse(localStorage.getItem("user"));
   return (
     <>
       <div className="userInfoContainer">
@@ -20,8 +18,8 @@ const UserInfo = () => {
         </div>
         <div className="userInfoDetails">
           <div className="userInfoName">Bhagya Shree</div>
-          <div className="userInfoName">{userData.jobTitle}</div>
-          <div className="userInfoName">{userData.company}</div>
+          <div className="userInfoName">{currentUser.jobTitle}</div>
+          <div className="userInfoName">{currentUser.company}</div>
         </div>
         <div className="shareEditContainer">
           <button className="shareEditBtn">

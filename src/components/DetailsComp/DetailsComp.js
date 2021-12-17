@@ -1,25 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
 import openQuote from "../../assets/images/copy.png";
 import closeQuote from "../../assets/images/invalid-name.png";
-import "../../assets/styles/DetailsComp.scss";
-import AuthContext from "../../context/AuthContext";
+import "./DetailsComp.scss";
 import ReadMore from "../ReadMore/ReadMore";
 import ButtonGrp from "../ButtonGrp/ButtonGrp";
 import { MdEmail, MdCall } from "react-icons/md";
 import { BsGlobe } from "react-icons/bs";
 const DetailsComp = () => {
-  //data from context api
-  const authCtx = useContext(AuthContext);
-  const userData = authCtx.userData;
+  //data from localstorage
+  const currentUser = JSON.parse(localStorage.getItem("user"));
   return (
     <div className="detailsComp">
       <div className="detailsQuote">
         <img src={openQuote} alt="" className="quoteImg" />
-        <span className="quoteText">{userData.tagline}</span>
+        <span className="quoteText">{currentUser.tagline}</span>
         <img src={closeQuote} alt="" className="quoteImg" />
       </div>
       <ReadMore>
-        {/* <div className="detailsInto"> */}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et eros
         sit amet sem viverra porttitor vel quis justo. Sed tempus, lorem
         suscipit vulputate mollis, mi dolor bibendum mi, non auctor nisi est nec

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/styles/ButtonGrp.scss";
+import "./ButtonGrp.scss";
 
 const ButtonGrp = (props) => {
   const { title, bgColor, color } = props.btn;

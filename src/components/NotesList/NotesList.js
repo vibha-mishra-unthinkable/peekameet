@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import "../../assets/styles/NotesList.scss";
+import "./NotesList.scss";
 import MenuItems from "../MenuItems/MenuItems";
 import ReadMore from "../ReadMore/ReadMore";
 export const NotesList = () => {
   let notesList = useSelector((state) => {
     return state.noteReducer.notes;
   });
-  let length = notesList.length;
-  console.log(length);
+
   const initial = {
     items: notesList.slice(0, 2),
     hasMore: true,
@@ -18,8 +17,6 @@ export const NotesList = () => {
   const [state, setState] = useState(initial);
 
   const fetchData = () => {
-    console.log("loading list: ", initial.items.length);
-    console.log("note length: ", notesList.length);
     if (initial.items.length * state.pageCount === notesList.length) {
       setState((prevState) => ({
         ...prevState,
@@ -51,14 +48,18 @@ export const NotesList = () => {
         {state.items.map((note, noteArrId) => {
           return (
             <div className="note" key={note.id}>
-              <div className="noteText">
-                <ReadMore>{note.noteInputs.noteTextInput}</ReadMore>
-                <div className="dateTime">
-                  <span className="dateTimeText">{note.noteInputs.date}</span>
-                  <span className="dateTimeText">{note.noteInputs.time}</span>
-                </div>
-              </div>
+              {/* <div className="noteText"> */}
+              {/* <div className="threedots"> */}
+
+              {/* </div> */}
+              <ReadMore>{note.noteInputs.noteTextInput}</ReadMore>
               <MenuItems note={note} noteArrId={noteArrId} />
+              <div className="text-muted dateTime">
+                <span>{note.noteInputs.date}</span>
+                <span>{note.noteInputs.time}</span>
+              </div>
+
+              {/* </div> */}
             </div>
           );
         })}

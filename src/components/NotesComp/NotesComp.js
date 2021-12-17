@@ -1,6 +1,6 @@
 import React from "react";
 import { BsFillPencilFill } from "react-icons/bs";
-import "../../assets/styles/NotesComp.scss";
+import "./NotesComp.scss";
 import { Link } from "react-router-dom";
 import { NotesList } from "../NotesList/NotesList";
 import { useSelector } from "react-redux";

@@ -26,8 +26,10 @@ export const AuthContextProvider = (props) => {
     setToken(null);
     localStorage.removeItem("token", null);
   };
-  const setDataHandler = (userData) => {
-    setUserData(userData);
+  const setDataHandler = (userInfo) => {
+    setUserData(userInfo);
+    console.log(userInfo);
+    localStorage.setItem("user", JSON.stringify(userInfo));
   };
 
   const contextValue = {

@@ -7,7 +7,6 @@ const SignIn = () => {
     <>
       <div className="signinContainer">
         <Logo />
-
         <SignInForm />
       </div>
     </>

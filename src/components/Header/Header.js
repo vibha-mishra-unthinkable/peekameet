@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../assets/styles/Logo.scss";
+import "./Logo.scss";
 import { FaHome } from "react-icons/fa";
 import {
   MdPeopleAlt,

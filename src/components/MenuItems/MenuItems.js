@@ -6,6 +6,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useDispatch } from "react-redux";
 import { deleteNote, editNoteText } from "../../redux/actions/index";
 import { useNavigate } from "react-router-dom";
+import "./MenuItems.scss";
 
 const options = ["View All", "Edit", "Delete"];
 
@@ -33,7 +34,7 @@ const MenuItems = (props) => {
     setAnchorEl(null);
   };
   return (
-    <div>
+    <div className="menuItems">
       <IconButton
         aria-label="more"
         aria-controls="long-menu"

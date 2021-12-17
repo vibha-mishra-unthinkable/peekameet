@@ -19,6 +19,7 @@ function App() {
             <Route path="/home/notes" element={<Notes />} />
             <Route path="/home/notes/addnotes" element={<AddNotes />} />
             <Route path="/home/notes/addnotes/:id" element={<AddNotes />} />
+            <Route path="*" element={<SignIn />} />
           </Routes>
         </div>
         <Footer />

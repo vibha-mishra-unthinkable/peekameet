@@ -1,0 +1,36 @@
+.note {
+  border-top: 2px solid rgb(219, 219, 219);
+  border-bottom: 2px solid rgb(219, 219, 219);
+  border-right: 2px solid rgb(219, 219, 219);
+  border-left: 8px solid #09a04f;
+  border-radius: 10px;
+  width: 770px;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: white;
+}
+.noteText {
+  font-size: 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: wrap;
+}
+.threedots {
+  text-align: right;
+}
+.dateTime {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  color: grey;
+}
+.dateTimeText {
+  margin-right: 2px;
+}
+.notesList {
+  overflow: scroll;
+  height: 93vh;
+}
+.notesList::-webkit-scrollbar {
+  display: none;
+}

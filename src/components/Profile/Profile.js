@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/styles/Profile.scss";
+import "./Profile.scss";
 import UserInfo from "../UserInfo/UserInfo";
 import Header from "../Header/Header";
 

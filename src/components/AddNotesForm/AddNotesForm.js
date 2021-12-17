@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "../../assets/styles/AddNotesForm.scss";
+import "./AddNotesForm.scss";
 import { saveNote, editNote } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";

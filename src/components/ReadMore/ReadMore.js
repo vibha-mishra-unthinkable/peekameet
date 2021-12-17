@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../assets/styles/ReadMore.scss";
+import "./ReadMore.scss";
 
 const ReadMore = ({ children }) => {
   const text = children;

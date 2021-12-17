@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import "../../assets/styles/SignInForm.scss";
+import "./SignInForm.scss";
 import group18 from "../../assets/images/group-18.jpg";
 import ButtonGrp from "../ButtonGrp/ButtonGrp";
 import { useNavigate } from "react-router-dom";
